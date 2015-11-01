@@ -35,6 +35,17 @@ def main():
 	# Write Sentiment Results to File
 	print "Writing to results/sentimentResults.json... \n"
 	fileIO.writeJsonFile(mySentimentDict, 'results/sentimentResults.json')
+
+	# Print Succcess
+	print "Success \n"	
+
+# Call Main	
+main()
+
+"""	
+	# Get Gender Given Person Name
+	print "Calling Gender API... \n"
+	apiCall.getGender(authorList)
 	
 	# Ethnicity Analysis on Text
 	print "Calling Ethnicity API... \n"
@@ -48,13 +59,4 @@ def main():
 		myEthnicityDict[documentId]["ethnicity"] = ethnicityJsonArray[index][0]['best']
 		myEthnicityDict[documentId]["commentText"] = textList[index]
 		myEthnicityDict[documentId]["author"] = authorList[index]
-
-	# Get Gender Given Person Name
-	print "Calling Gender API... \n"
-	apiCall.getGender(myJsonDict)
-
-	# Print Succcess
-	print "Success \n"	
-
-# Call Main	
-main()
+"""

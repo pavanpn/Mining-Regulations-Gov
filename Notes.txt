@@ -1,0 +1,54 @@
+Regulations GOV
+----------------
+
+Get Information about Regulation
+----------------
+http://api.data.gov/regulations/v3/documents.json?s=ICEB-2015-0002-3536&api_key=Wt9LjS90KBYJy4YvliWrJxs0Qx0TK4jzcrhauN29
+
+
+Single Comment
+----------------
+http://api.data.gov/regulations/v3/documents.json?s=ICEB-2015-0002-3536&api_key=Wt9LjS90KBYJy4YvliWrJxs0Qx0TK4jzcrhauN29
+
+
+Get 1000 Comments
+----------------
+http://api.data.gov/regulations/v3/documents.json?api_key=Wt9LjS90KBYJy4YvliWrJxs0Qx0TK4jzcrhauN29&dct=PS&D=ICEB-2015-0002&rpp=“1000”&po=0
+
+
+Comment Format
+----------------
+"agencyAcronym":"ICEB","allowLateComment":false,"attachmentCount":0,
+"commentDueDate":"2015-11-18T23:59:59-05:00",
+"commentStartDate":"2015-10-19T00:00:00-04:00",
+"commentText":"I really appreciate the extension of another 7 months of OPT in the proposed system but the MTP(mentoring and training program) is the main drawback in the proposed system for students because top companies(especially, some of the fortune 500 companies) are already not showing interest in hiring F-1 students because of the requirement for the sponsorship. With this new rule, they might move a step backward in hiring F-1 students and even continuing them in the current positions they are working as it requires manager/lead/tech-help person to put some extra time for these employees to follow the process, setup the goals which may not be their interest. \n\nI completely understand the benefit of MTP for an F-1 student which helps the student to gain knowledge in their related field and keep them up to the speed but like I explained above it takes away the opportunity to get into a reputed well established organizations. So I sincerely request DHS to remove the MTP rule.\n\nThanks!",
+"docketId":"ICEB-2015-0002",
+"docketTitle":"Improving and Expanding Training Opportunities for F-1 Nonimmigrant Students with STEM Degrees; Cap-Gap Relief for All F-1 Students With Pending H-1B Petitions and Change of Status Requests",
+"docketType":"Rulemaking",
+"documentId":"ICEB-2015-0002-2862",
+"documentStatus":"Posted",
+"documentType":"Public Submission",
+"numberOfCommentsReceived":1,
+"openForComment":true,
+"postedDate":"2015-10-30T00:00:00-04:00",
+"rin":"1653-AA72",
+"title":"Comment Submitted by Jaya Laksmi Uppalapati"
+
+
+API: Sentiment Analysis on Text
+----------------
+https://community-sentiment.p.mashape.com/text/
+http://sentiment.vivekn.com/docs/api/
+
+API: Gender
+----------------
+https://api.genderize.io/?name[0]=janice&name[1]=roberts
+
+API: Ethnicity
+----------------
+http://www.textmap.com/ethnicity/
+
+[TODO] Common Phrases/ Words
+
+[TODO] Group Comments by Similarity
+

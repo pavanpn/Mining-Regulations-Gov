@@ -2,6 +2,7 @@ import requests
 import json 
 import itertools
 import math
+import re
 
 # Get Sentiment Value from API
 def getSentimentResults(jsonString):
@@ -24,39 +25,36 @@ def callGenderAPI(inputString):
 	return response.json()
 
 # Write Gender Results to File
-def processResults(results, myJsonDict, myDocIdList, myNameList):
-	
+def processResults(results, myNameList):
 	for index in range( len(results) ):	
-		myDocId = myDocIdList[index]
 		myGender = results[index]['gender'] 
 		myName = myNameList[index]
-		writefile(myDocId+","+myGender+","+myName, 'results/genderAPI.csv')
+		writefile(myName+","+myGender, 'results/genderAPI.csv')
 	
 # Get Gender by First Name
-def getGender(inputJsonDict):
-	myJsonDict = inputJsonDict
+def getGender(authorList):
 	counter = 0
 	apiString = ""
-	myDocIdList = []
 	myNameList  = []
 	# Preprocess the data and use only
-	# 10 names per API call
-	for key, value in myJsonDict.iteritems():
+	for index in range ( len(authorList) ):
 		counter += 1
-		fname = value['author']
+		fname = authorList[index]
+		myNameList.append(fname)
+		# Get only the first name
 		name = fname.split(' ')[0].lstrip(' ')
 		re.sub(r'\W+', '', name)
-		myDocIdList.append(key)
-		myNameList.append(key)
-		if name == ":":
-			print "\n\n\n ERR \n\n", fname, "\n"
+		# Generate string in required API format
 		apiString = apiString + "name[%d]=%s&" % (counter, name)
+		# Set limit to 10 names per call
 		if (counter == 9):
-			counter = 0
+			# Call the API and write results to File
 			results = callGenderAPI(apiString)
-			myJsonDict = processResults(results, myJsonDict, myDocIdList, myNameList)
-			apiString = ""
+			myJsonDict = processResults(results, myNameList)
 			print "Processing \n"
+			# Reset counters after 10
+			apiString = ""
+			counter = 0
 			myDocIdList = []
 			myNameList = []
 	# Call API last time for remaining names

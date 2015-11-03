@@ -31,10 +31,27 @@ def main():
 		mySentimentDict[documentId] = sentimentJsonArray[index]
 		mySentimentDict[documentId]["commentText"] = textList[index]
 		mySentimentDict[documentId]["author"] = authorList[index]
+	
+	# Sentiment Analysis on Text
+	print "Calling Sentiment Analysis API... \n"
+	sentimentJsonArray = apiCall.getSentimentResults(textJsonString)
+	
+	# Associate Results with Id
+	print "Compiling Results... \n"
+	mySentimentDict = {}
+	for index in range( len(idList) ):		
+		documentId = idList[index]
+		mySentimentDict[documentId] = sentimentJsonArray[index]
+		mySentimentDict[documentId]["commentText"] = textList[index]
+		mySentimentDict[documentId]["author"] = authorList[index]
 		
 	# Write Sentiment Results to File
 	print "Writing to results/sentimentResults.json... \n"
 	fileIO.writeJsonFile(mySentimentDict, 'results/sentimentResults.json')
+	
+	# Get Gender Given Person Name
+	print "Calling Gender API... \n"
+	apiCall.getGender(authorList)
 
 	# Print Succcess
 	print "Success \n"	
@@ -43,10 +60,6 @@ def main():
 main()
 
 """	
-	# Get Gender Given Person Name
-	print "Calling Gender API... \n"
-	apiCall.getGender(authorList)
-	
 	# Ethnicity Analysis on Text
 	print "Calling Ethnicity API... \n"
 	ethnicityJsonArray = apiCall.getEthnicityResults(authorList)

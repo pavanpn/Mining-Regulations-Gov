@@ -2,6 +2,7 @@ import requests
 import json 
 import itertools
 import math
+import fileIO
 import re
 
 # Get Sentiment Value from API
@@ -29,12 +30,14 @@ def processResults(results, myNameList):
 	for index in range( len(results) ):	
 		myGender = results[index]['gender'] 
 		myName = myNameList[index]
-		writefile(myName+","+myGender, 'results/genderAPI.csv')
+		myOutString = str(myName)+","+str(myGender)
+		fileIO.writeFile(myOutString, 'results/genderAPI.csv')
 	
 # Get Gender by First Name
 def getGender(authorList):
-	counter = 0
-	apiString = ""
+	counter     = 0
+	apiLimit    = 0
+	apiString   = ""
 	myNameList  = []
 	# Preprocess the data and use only
 	for index in range ( len(authorList) ):
@@ -46,6 +49,9 @@ def getGender(authorList):
 		re.sub(r'\W+', '', name)
 		# Generate string in required API format
 		apiString = apiString + "name[%d]=%s&" % (counter, name)
+		# Check for API Limit
+		if apiLimit > 900:
+			break
 		# Set limit to 10 names per call
 		if (counter == 9):
 			# Call the API and write results to File
@@ -54,7 +60,8 @@ def getGender(authorList):
 			print "Processing \n"
 			# Reset counters after 10
 			apiString = ""
-			counter = 0
+			counter   = 0
+			apiLimit += 10 
 			myDocIdList = []
 			myNameList = []
 	# Call API last time for remaining names

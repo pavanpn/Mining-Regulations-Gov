@@ -4,6 +4,25 @@ import itertools
 import math
 import fileIO
 import re
+import sys
+import urllib
+
+# Get Number of Comments on regulation, given API_KEY and DOCKET_ID
+def getNumberOfComments():
+	# Get API KEY as parameter to the function
+	if len(sys.argv) > 2:
+		API_KEY = sys.argv[1]
+		DOCKET_ID = sys.argv[2]
+	else:
+		print "SYNTAX: getData <API_KEY> <DOCKET_ID>"
+		quit() 
+	# Call the URL and get the number of comments
+	getRegulationUrl = "http://api.data.gov:80/regulations/v3/docket.json?api_key="+API_KEY+"&docketId="+DOCKET_ID
+	response = urllib.urlopen(getRegulationUrl)
+	regulationData = json.loads(response.read())
+	MAX_COMMENTS = regulationData["numberOfComments"]
+
+	return MAX_COMMENTS
 
 # Get Sentiment Value from API
 def getSentimentResults(jsonString):

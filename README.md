@@ -4,13 +4,13 @@ Sentiment, Gender and Ethnicity based Analysis of Comments on data from Regulati
 # Setup
 This repository consists of : 
 - getData.py        : Uses Regulations.gov API to retrieve data given API_KEY and DOCKET_ID.
-'''
+```
 python getData.py <API_KEY> <DOCKET_ID>
-'''
+```
 - main.py           : Reads data, cleans data and calls APIs for sentiment analysis, gender identification from first name and ethniciy identification from full name.
-'''
+```
 python main.py
-'''
+```
 - data folder       : Results of getData.py. Contains comments retrieved via Regulations.gov API
 - results folder    : Contains results of analysis as JSON files
 - analyseResults.py : Prints a quick summary of results of analysis.
@@ -28,6 +28,6 @@ python main.py
 - Gender API is limited to 1000 calls
 - Ethnnicity API has very high latency
 - Need to use this command currently to analyse gender 
-'''
+```
 grep -o 'None' genderAPI.csv | wc -l
-'''
+```

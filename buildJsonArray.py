@@ -17,14 +17,21 @@ def getTextAndId(inputDict):
 	myIdList     = []
 	myAuthorList = []
 	
+	# Incorrect Format Comments
+	errorComments = 0
+
 	# Read Dictionary
 	for key, value in inputDict.iteritems():
-		myText  = value["commentText"]
-		myTitle = cleanAuthorName( value["title"] )
-		myTextList.append(myText)
-		myIdList.append(key)
-		myAuthorList.append(myTitle)
-	
+		try:
+			myText  = value["commentText"]
+			myTitle = cleanAuthorName( value["title"] )
+			myTextList.append(myText)
+			myIdList.append(key)
+			myAuthorList.append(myTitle)
+		except:
+			errorComments += 1
+	print "Incorrect Format Comments: ", errorComments
+
 	# Convert to JSON String
 	jsonStringText = json.dumps(myTextList)
 	

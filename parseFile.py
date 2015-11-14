@@ -1,15 +1,15 @@
 import json
 import fileIO
+import glob
 
-# Read File
-def readFiles():
-	# Form dictionary from input files
-	dict0 = fileToDict ( 'data/documents0.json' )
-	dict1 = fileToDict ( 'data/documents1000.json' )
-	dict2 = fileToDict ( 'data/documents2000.json' )
-	dict3 = fileToDict ( 'data/documents3000.json' )
-	# Final dictionary
-	result_dict = dict(dict0.items() + dict1.items() + dict2.items() + dict3.items() )
+# Read Files in Directory
+def readFiles(myPath):
+	myFileNames =  	glob.glob(myPath)
+	result_dict = {}
+	for file in myFileNames:
+		# Form dictionary from input files
+		myDict = fileToDict ( file )
+		result_dict = dict(myDict.items() + result_dict.items())
 	return result_dict
 
 # Convert to Dictionary
@@ -27,6 +27,6 @@ def fileToDict( myFilename ):
 	return myJsonFinalDict
 
 # Get Dictionary
-def getDict():
-	myDict = readFiles()
+def getDict(myPath):
+	myDict = readFiles(myPath)
 	return myDict
